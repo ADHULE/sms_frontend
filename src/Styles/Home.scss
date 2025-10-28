@@ -1,0 +1,119 @@
+
+$primary-color: #0d6efd;
+$secondary-color: #212529;
+$light-bg: #f8f9fa;
+
+// Conteneur principal
+.home-page {
+  background-color: $light-bg;
+  color: $secondary-color;
+  font-family: 'Poppins', sans-serif;
+
+  .hero-section {
+    background: linear-gradient(
+        rgba(13, 110, 253, 0.75),
+        rgba(13, 110, 253, 0.75)
+      ),
+      url('../Media/office-bg.jpg') center/cover no-repeat;
+    height: 80vh;
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+    padding: 3rem;
+
+    h1 {
+      animation: fadeInDown 1.2s ease;
+    }
+
+    p {
+      animation: fadeInUp 1.2s ease;
+      max-width: 700px;
+    }
+
+    .btn-primary {
+      background-color: darken($primary-color, 5%);
+      border: none;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: lighten($primary-color, 10%);
+        transform: scale(1.05);
+      }
+    }
+  }
+
+  .features {
+    .feature-card {
+      border-radius: 1rem;
+      background-color: white;
+      transition: all 0.3s ease;
+
+      &:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      }
+    }
+  }
+
+  .advantages {
+    background-color: white;
+    .advantage-card {
+      border-radius: 1rem;
+      background-color: $light-bg;
+      transition: all 0.3s ease;
+
+      &:hover {
+        transform: translateY(-5px);
+        background-color: lighten($primary-color, 40%);
+      }
+    }
+  }
+
+  .footer {
+    background-color: $secondary-color;
+    color: #fff;
+    font-size: 0.9rem;
+  }
+}
+
+// Animations
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Responsivité
+@media (max-width: 768px) {
+  .hero-section {
+    height: 60vh;
+
+    h1 {
+      font-size: 2rem;
+    }
+
+    p {
+      font-size: 1rem;
+    }
+  }
+
+  .feature-card,
+  .advantage-card {
+    margin-bottom: 1.5rem;
+  }
+}

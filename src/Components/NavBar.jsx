@@ -1,96 +1,83 @@
-import React, { Component } from "react";
-import ExternalContent from "./ExternalContent";
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { FaHome, FaUsers, FaPlus, FaSearch } from "react-icons/fa"; // Icônes FontAwesome
+import "../Styles/Nav.scss"; // ton fichier de style personnalisé (optionnel)
 
-class NavBar extends Component {
-  render() {
-    return (
-      <>
-        <nav className="navbar navbar-expand-lg bg-body-tertiary">
-          <div className="container-fluid">
-            <a className="navbar-brand" href="#">
-              Navbar scroll
-            </a>
-            <button
-              className="navbar-toggler"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarScroll"
-              aria-controls="navbarScroll"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span className="navbar-toggler-icon"></span>
-            </button>
-            <div className="collapse navbar-collapse" id="navbarScroll">
-              <ul
-                className="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll"
-                style={{ "--bs-scroll-height": "100px" }}
+const NavBar = () => {
+  const navigate = useNavigate();
+
+  return (
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+      <div className="container-fluid">
+        <a
+          className="navbar-brand d-flex align-items-center"
+          href="#"
+          onClick={() => navigate("/")}
+        >
+          <FaHome className="me-2" />
+          MyCompany
+        </a>
+
+        {/* Bouton responsive */}
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+
+        {/* Liens */}
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            <li className="nav-item">
+              <button
+                className="nav-link btn btn-link text-light"
+                onClick={() => navigate("/")}
               >
-                <li className="nav-item">
-                  <a className="nav-link active" aria-current="page" href="#">
-                    Home
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    Link
-                  </a>
-                </li>
-                <li className="nav-item dropdown">
-                  <a
-                    className="nav-link dropdown-toggle"
-                    href="#"
-                    role="button"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    Link
-                  </a>
-                  <ul className="dropdown-menu">
-                    <li>
-                      <a className="dropdown-item" href="#">
-                        Action
-                      </a>
-                    </li>
-                    <li>
-                      <a className="dropdown-item" href="#">
-                        Another action
-                      </a>
-                    </li>
-                    <li>
-                      <hr className="dropdown-divider" />
-                    </li>
-                    <li>
-                      <a className="dropdown-item" href="#">
-                        Something else here
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link disabled" aria-disabled="true">
-                    Link
-                  </a>
-                </li>
-              </ul>
-              <form className="d-flex" role="search">
-                <input
-                  className="form-control me-2"
-                  type="search"
-                  placeholder="Search"
-                  aria-label="Search"
-                />
-                <button className="btn btn-outline-success" type="submit">
-                  Search
-                </button>
-              </form>
-            </div>
-          </div>
-        </nav>
-        <ExternalContent/>
-      </>
-    );
-  }
-}
+                <FaHome className="me-1" /> Accueil
+              </button>
+            </li>
+
+            <li className="nav-item">
+              <button
+                className="nav-link btn btn-link text-light"
+                onClick={() => navigate("/listEmployees")}
+              >
+                <FaUsers className="me-1" /> Employés
+              </button>
+            </li>
+
+            <li className="nav-item">
+              <button
+                className="nav-link btn btn-link text-light"
+                onClick={() => navigate("/add-employee")}
+              >
+                <FaPlus className="me-1" /> Ajouter
+              </button>
+            </li>
+          </ul>
+
+          {/* Barre de recherche (optionnelle) */}
+          <form className="d-flex" role="search">
+            <input
+              className="form-control me-4"
+              type="search"
+              placeholder="Rechercher..."
+              aria-label="Search"
+            />
+            <button className="btn btn-outline-success" type="submit">
+              <FaSearch />
+            </button>
+          </form>
+        </div>
+      </div>
+    </nav>
+  );
+};
 
 export default NavBar;
