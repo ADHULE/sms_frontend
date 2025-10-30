@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { FaHome, FaUsers, FaPlus, FaSearch } from "react-icons/fa"; // Icônes FontAwesome
+import { FaHome, FaUsers, FaPlus, FaSearch, FaSignInAlt, FaUserAlt } from "react-icons/fa"; // Icônes FontAwesome
 import "../Styles/Nav.scss"; // ton fichier de style personnalisé (optionnel)
 
 const NavBar = () => {
@@ -42,7 +42,6 @@ const NavBar = () => {
                 <FaHome className="me-1" /> Accueil
               </button>
             </li>
-
             <li className="nav-item">
               <button
                 className="nav-link btn btn-link text-light"
@@ -50,8 +49,23 @@ const NavBar = () => {
               >
                 <FaUsers className="me-1" /> Employés
               </button>
+            </li>{" "}
+            {/* <li className="nav-item">
+              <button
+                className="nav-link btn btn-link text-light"
+                onClick={() => navigate("/listEmployees")}
+              >
+                <FaSignInAlt className="me-1" /> Connexion
+              </button>
             </li>
-
+            <li className="nav-item">
+              <button
+                className="nav-link btn btn-link text-light"
+                onClick={() => navigate("/listEmployees")}
+              >
+                <FaUserAlt className="me-1" /> Register
+              </button>
+            </li>
             <li className="nav-item">
               <button
                 className="nav-link btn btn-link text-light"
@@ -59,7 +73,7 @@ const NavBar = () => {
               >
                 <FaPlus className="me-1" /> Ajouter
               </button>
-            </li>
+            </li> */}
           </ul>
 
           {/* Barre de recherche (optionnelle) */}

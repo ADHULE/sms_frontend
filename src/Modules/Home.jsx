@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import NavBar from '../Components/NavBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../Styles/Home.scss';
+import Footer from '../Components/Footer';
 
 class Home extends Component {
     render() {
@@ -88,10 +89,7 @@ class Home extends Component {
                     </div>
                 </section>
 
-                {/* FOOTER */}
-                <footer className="footer text-center py-4 mt-5">
-                    <p className="mb-0">© 2025 Employee Management System | Développé par l’équipe SmartDev</p>
-                </footer>
+              <Footer></Footer>
             </div>
         );
     }

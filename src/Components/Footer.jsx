@@ -2,15 +2,12 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <div class="card text-center">
-      <div class="card-body">
-        <p class="card-text">
-          With supporting text below as a natural lead-in to additional content.
+    <div>
+      <footer className="footer text-center py-4 mt-5">
+        <p className="mb-0">
+          © 2025 Employee Management System | Développé par l’équipe SmartDev
         </p>
-        <a href="#" class="btn btn-primary">
-          Go somewhere
-        </a>
-      </div>
+      </footer>
     </div>
   );
 };

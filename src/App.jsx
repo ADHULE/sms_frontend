@@ -5,15 +5,14 @@ import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./Modules/Home.jsx";
 import ListEmployeeComponent from "./Modules/ListEmployeeComponent.jsx";
-import AddNewEmployeeComponent from "./Modules/AddNewEmployeeComponent.jsx";
-import 'bootstrap-icons/font/bootstrap-icons.css';
-
+import "bootstrap-icons/font/bootstrap-icons.css";
+import UpdateEmployee from "./Modules/UpdateEmployee.jsx";
+import AddEmployee from "./Modules/AddEmployee.jsx";
 
 class App extends Component {
   render() {
     return (
       <>
-
         {/* configuration des liens de navigation entre les différentes pages */}
 
         <BrowserRouter>
@@ -26,10 +25,11 @@ class App extends Component {
               element={<ListEmployeeComponent />}
             ></Route>
             {/* url pour ajouter un nouveau employé */}
-            <Route
-              path="/addEmployee"
-              element={<AddNewEmployeeComponent />}
-            ></Route>
+            <Route path="/add-employee" element={<AddEmployee />}></Route>
+            {/* update employee url*/}
+            <Route path="/edit-employee/:id" element={<UpdateEmployee />}></Route>
+          
+          
           </Routes>
         </BrowserRouter>
       </>

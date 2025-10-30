@@ -1,4 +1,5 @@
 import React from "react";
+import Footer from "../Components/Footer";
 
 const Register = () => {
   return (
@@ -92,6 +93,7 @@ const Register = () => {
           </a>
         </p>
       </div>
+      <Footer></Footer>
     </div>
   );
 };
