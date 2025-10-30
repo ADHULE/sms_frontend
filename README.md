@@ -19,6 +19,7 @@ Cette application frontend permet de gérer les employés d'une entreprise via u
 - **React** ou **Vue.js** (selon la version)
 - **React Router** / **Vue Router** pour la navigation
 - **Axios** pour les appels API
+- **bootstrap** et
 - **CSS Modules** ou **SCSS** pour le style
 - **Vite** ou **Webpack** pour le bundling
 
