@@ -1,22 +1,24 @@
 // Importation des hooks et composants nécessaires
-import React, { useEffect, useState } from "react"; // Hook pour gérer l'état local
-import { useNavigate, useParams } from "react-router-dom"; // Hook pour la navigation entre pages
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import NavBar from "../Components/NavBar";
 import Footer from "../Components/Footer";
-import { createEmployee, getEmployeeById } from "../Services/EmployeeServices"; // Fonction pour créer un employé via l'API
+import {
+  createEmployee,
+  getEmployeeById,
+  updateEmployee,
+} from "../Services/EmployeeServices";
 
 // Définition du composant principal
 function AddEmployee() {
-  // Déclaration des états pour les champs du formulaire
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
 
-  // Hook pour rediriger l'utilisateur après soumission
   const navigate = useNavigate();
   const { id } = useParams();
 
-  // mis à jour des informtions
+  // Chargement des données si modification
   useEffect(() => {
     if (id) {
       getEmployeeById(id)
@@ -26,60 +28,51 @@ function AddEmployee() {
           setEmail(response.data.email);
         })
         .catch((error) => {
-          console.error(error);
+          console.error("Erreur lors du chargement de l'employé :", error);
         });
     }
   }, [id]);
 
-  // Fonction pour réinitialiser les champs du formulaire
   const resetForm = () => {
     setFirstName("");
     setLastName("");
     setEmail("");
   };
 
-  // Fonction appelée lors de la soumission du formulaire
-  const saveEmployee = async (e) => {
-    e.preventDefault(); // Empêche le rechargement de la page
-
-    // Création de l'objet employé à envoyer
+  const saveOrUpdateEmployee = async (e) => {
+    e.preventDefault();
     const employee = { firstName, lastName, email };
 
     try {
-      // Appel du service pour créer l'employé
-      const response = await createEmployee(employee);
-      console.log("Employee created:", response.data); // Affiche la réponse dans la console
-
-      // Redirection vers la liste des employés
+      if (id) {
+        await updateEmployee(id, employee);
+        console.log("Employee updated:", employee);
+      } else {
+        const response = await createEmployee(employee);
+        console.log("Employee created:", response.data);
+      }
       navigate("/listEmployees");
     } catch (error) {
-      // Gestion des erreurs
-      //   console.error("Error creating employee:", error);
-      alert("Failed to create employee. Please try again.");
+      console.error("Erreur lors de la sauvegarde :", error);
+      alert("Une erreur est survenue. Veuillez réessayer.");
     }
   };
 
-  function updateTile() {
-    if (id) {
-      return <h2 className="text-center mt-3">Update employee</h2>;
-    } else {
-      return <h2 className="text-center mt-3">Add Employee</h2>;
-    }
-  }
+  const renderTitle = () => (
+    <h2 className="text-center mt-3">
+      {id ? "Update Employee" : "Add Employee"}
+    </h2>
+  );
 
-  // Retour du JSX à afficher
   return (
     <>
-      <NavBar /> {/* Barre de navigation */}
+      <NavBar />
       <div className="container mt-4">
         <div className="row">
           <div className="card col-md-6 offset-md-3">
-            {updateTile}
-
+            {renderTitle()}
             <div className="card-body">
-              {/* Formulaire d'ajout d'employé */}
-              <form onSubmit={saveEmployee}>
-                {/* Champ prénom */}
+              <form onSubmit={saveOrUpdateEmployee}>
                 <div className="form-group mb-3">
                   <label className="form-label">First Name:</label>
                   <input
@@ -93,7 +86,6 @@ function AddEmployee() {
                   />
                 </div>
 
-                {/* Champ nom */}
                 <div className="form-group mb-3">
                   <label className="form-label">Last Name:</label>
                   <input
@@ -107,7 +99,6 @@ function AddEmployee() {
                   />
                 </div>
 
-                {/* Champ email */}
                 <div className="form-group mb-3">
                   <label className="form-label">Email:</label>
                   <input
@@ -121,7 +112,6 @@ function AddEmployee() {
                   />
                 </div>
 
-                {/* Boutons de soumission et de réinitialisation */}
                 <div className="d-flex justify-content-between">
                   <button type="submit" className="btn btn-success">
                     Submit
@@ -139,10 +129,9 @@ function AddEmployee() {
           </div>
         </div>
       </div>
-      <Footer /> {/* Pied de page */}
+      <Footer />
     </>
   );
 }
 
-// Exportation du composant pour utilisation ailleurs
 export default AddEmployee;

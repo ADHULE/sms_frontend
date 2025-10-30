@@ -18,4 +18,7 @@ export const getEmployeeById = (employeeId) =>
 
 // Changer les informations d'un enmployé
 export const updateEmployee = (employeeId, employee) =>
-  axios.put(`REST_API_BASE_URL/${(employeeId, employee)}`);
+  axios.put(`${REST_API_BASE_URL}/${(employeeId, employee)}`);
+
+export const deleteEmployee = (employeeId) =>
+  axios.delete(`${REST_API_BASE_URL}/${employeeId}`);
